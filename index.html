@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <script>
+      const { StarRail } = require("starrail.js");
+      const client = new StarRail();
+      client.cachedAssetsManager.cacheDirectoryPath = "./cache";
+      client.cachedAssetsManager.cacheDirectorySetup();
+    </script>
     <header>
       <h1>Your Name</h1>
       <nav>
