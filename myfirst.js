@@ -1,4 +1,10 @@
 var http = require("http");
+const { StarRail } = require("starrail.js");
+const client = new StarRail();
+
+const characters = client.getAllCharacters();
+// print character names in language "en"
+//console.log(characters.map((c) => c.name.get("en")));
 
 http
   .createServer(function (req, res) {
