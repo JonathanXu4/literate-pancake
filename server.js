@@ -1,14 +1,23 @@
-const http = require("http");
 const express = require("express");
 const path = require("path");
 const app = express();
-app.use(express.json());
-app.use(express.static("express")); // default URL for website
-app.use("/", function (req, res) {
-  res.sendFile(path.join(__dirname + "/express/index.html"));
-  //__dirname : It will resolve to your project folder.
-});
-const server = http.createServer(app);
+const server = require("http").createServer(app);
 const port = 3000;
-server.listen(port);
-console.debug("Server listening on port " + port);
+
+// Middleware
+app.use(express.json());
+app.use(express.static("express"));
+
+// API
+const api = require("./api"); // Assuming your API file is in the same directory
+app.use("/api", api);
+
+// Routes
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "express", "index.html"));
+});
+
+// Server
+server.listen(port, () => {
+  console.debug(`Server listening on port ${port}`);
+});
