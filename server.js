@@ -2,6 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+// updater
+/*const { StarRail } = require("starrail.js");
+const client = new StarRail({ showFetchCacheLog: true });
+client.cachedAssetsManager.fetchAllContents();*/
+
 const app = express();
 app.use(cors());
 
