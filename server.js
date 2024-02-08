@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 
 const server = require("http").createServer(app);
-const port = 3000;
+const port = 8000;
 
 // Middleware
 app.use(express.json());
