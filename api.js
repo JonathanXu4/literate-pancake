@@ -23,7 +23,7 @@ api.get("/greetings", (req, res) => {
 });
 
 api.get("/stats", (req, res) => {
-  var charList = {};
+  var charList = [];
   const levels = [1, 20, 20, 30, 30, 40, 40, 50, 50, 60, 60, 70, 70, 80];
   const levelText = [
     "1/20",
@@ -44,11 +44,14 @@ api.get("/stats", (req, res) => {
 
   let text = "";
 
+  let i = 0;
+
   for (const character of characters) {
     const name = character.name.get();
 
     text += name + "\n";
     let lv = 0;
+    var charName = '"' + name + '":';
     var ascList = {};
     for (let asc = 0; asc < 7; asc++) {
       for (let j = 0; j < 2; j++) {
@@ -66,15 +69,11 @@ api.get("/stats", (req, res) => {
         //console.log(`"${name}" - ${combatType} - ${stat}`);
       }
     }
-    charList[name] = ascList;
-    /*charList.sort(function (a, b) {
-      if (a < b) {
-        return -1;
-      } else if (a > b) {
-        return 1;
-      }
-      return 0;
-    });*/
+    charName += ascList;
+    //console.log(ascList);
+    charList[i] = charName;
+    charList.sort((a, b) => a.localeCompare(b));
+    i++;
   }
   //console.log(charList);
 
